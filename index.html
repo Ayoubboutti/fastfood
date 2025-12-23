@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FastBites | Delicious Fast Food</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="logo">FastBites 🍔</div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+      </ul>
+      <div class="cart-icon" onclick="openCart()">
+        🛒 <span id="cart-count">0</span>
+      </div>
+      <div class="hamburger" onclick="toggleMenu()">☰</div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero">
+      <video autoplay muted loop playsinline class="back-video">
+        <source src="/images/4008533-hd_2048_1080_25fps.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-content">
+        <h1>Craving Something <span class="highlight">Delicious?</span></h1>
+        <p>Fresh ingredients, fast delivery, and the best taste in town.</p>
+        <a href="#menu" class="btn-primary">Order Now</a>
+      </div>
+    </header>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu-section">
+      <h2>Our Popular Menu</h2>
+      <div class="menu-filters">
+        <button class="filter-btn active" onclick="filterMenu('all', this)">
+          All
+        </button>
+        <button class="filter-btn" onclick="filterMenu('burgers', this)">
+          Burgers
+        </button>
+        <button class="filter-btn" onclick="filterMenu('sides', this)">
+          Sides
+        </button>
+        <button class="filter-btn" onclick="filterMenu('drinks', this)">
+          Drinks
+        </button>
+        <button class="filter-btn" onclick="filterMenu('wraps', this)">
+          Wraps
+        </button>
+        <button class="filter-btn" onclick="filterMenu('pizza', this)">
+          Pizza
+        </button>
+      </div>
+      <div class="menu-grid">
+        <!-- Item 1 -->
+        <div class="food-card" data-category="burgers">
+          <img src="/images/cheese burger.png" alt="Classic Burger" />
+          <div class="food-info">
+            <h3>Classic Burger</h3>
+            <p>Juicy beef patty with fresh lettuce and tomato.</p>
+            <div class="price-row">
+              <span class="price">8.99 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Classic Burger', 8.99, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 1b (New Burger) -->
+        <div class="food-card" data-category="burgers">
+          <img
+            src="https://placehold.co/300x200/orange/white?text=Bacon+Burger"
+            alt="Bacon Burger"
+          />
+          <div class="food-info">
+            <h3>Bacon Burger</h3>
+            <p>Beef patty topped with crispy bacon and cheese.</p>
+            <div class="price-row">
+              <span class="price">9.99 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Bacon Burger', 9.99, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="food-card" data-category="sides">
+          <img
+            src="https://placehold.co/300x200/red/white?text=Spicy+Fries"
+            alt="Spicy Fries"
+          />
+          <div class="food-info">
+            <h3>Spicy Fries</h3>
+            <p>Crispy fries topped with our secret spicy seasoning.</p>
+            <div class="price-row">
+              <span class="price">4.50 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Spicy Fries', 4.50, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 2b (New Side) -->
+        <div class="food-card" data-category="sides">
+          <img
+            src="https://placehold.co/300x200/red/white?text=Onion+Rings"
+            alt="Onion Rings"
+          />
+          <div class="food-info">
+            <h3>Onion Rings</h3>
+            <p>Golden crispy fried onion rings.</p>
+            <div class="price-row">
+              <span class="price">5.50 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Onion Rings', 5.50, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="food-card" data-category="drinks">
+          <img
+            src="https://placehold.co/300x200/yellow/black?text=Mega+Shake"
+            alt="Mega Shake"
+          />
+          <div class="food-info">
+            <h3>Mega Shake</h3>
+            <p>Thick chocolate milkshake with whipped cream.</p>
+            <div class="price-row">
+              <span class="price">5.99 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Mega Shake', 5.99, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3b (New Drink) -->
+        <div class="food-card" data-category="drinks">
+          <img
+            src="https://placehold.co/300x200/yellow/black?text=Iced+Lemonade"
+            alt="Iced Lemonade"
+          />
+          <div class="food-info">
+            <h3>Iced Lemonade</h3>
+            <p>Freshly squeezed lemons with ice.</p>
+            <div class="price-row">
+              <span class="price">3.99 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Iced Lemonade', 3.99, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="food-card" data-category="wraps">
+          <img src="/images/viggie wrap.png" alt="Veggie Wrap" />
+          <div class="food-info">
+            <h3>Veggie Wrap</h3>
+            <p>Grilled vegetables wrapped in a warm tortilla.</p>
+            <div class="price-row">
+              <span class="price">7.50 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Veggie Wrap', 7.50, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 4b (New Wrap) -->
+        <div class="food-card" data-category="wraps">
+          <img
+            src="https://placehold.co/300x200/green/white?text=Chicken+Wrap"
+            alt="Chicken Wrap"
+          />
+          <div class="food-info">
+            <h3>Chicken Wrap</h3>
+            <p>Grilled chicken with caesar dressing.</p>
+            <div class="price-row">
+              <span class="price">8.50 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Chicken Wrap', 8.50, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 5 -->
+        <div class="food-card" data-category="pizza">
+          <img src="/images/pizz.png" alt="Pepperoni Pizza" />
+          <div class="food-info">
+            <h3>Pepperoni Pizza</h3>
+            <p>Classic pepperoni with mozzarella cheese.</p>
+            <div class="price-row">
+              <span class="price">12.99 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Pepperoni Pizza', 12.99, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 5b (New Pizza) -->
+        <div class="food-card" data-category="pizza">
+          <img src="/images/viggie pizza.png" alt="Veggie Pizza" />
+          <div class="food-info">
+            <h3>Veggie Pizza</h3>
+            <p>Loaded with peppers, onions, and mushrooms.</p>
+            <div class="price-row">
+              <span class="price">11.50 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Veggie Pizza', 11.50, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials-section">
+      <h2>What Our Customers Say</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p>"The best burger I've ever had! Fast delivery too."</p>
+          <div class="customer-info">
+            <h4>- Sarah J.</h4>
+            <div class="stars">★★★★★</div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p>"Love the spicy fries. Highly recommended!"</p>
+          <div class="customer-info">
+            <h4>- Mike T.</h4>
+            <div class="stars">★★★★☆</div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p>"Great service and delicious shakes."</p>
+          <div class="customer-info">
+            <h4>- Emily R.</h4>
+            <div class="stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+      <p>&copy; 2024 FastBites. All rights reserved.</p>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeCart()">&times;</span>
+        <h2>Checkout</h2>
+        <div
+          id="cart-items-container"
+          style="
+            margin-bottom: 1rem;
+            max-height: 150px;
+            overflow-y: auto;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+          "
+        ></div>
+        <p>Total Items: <span id="modal-cart-count">0</span></p>
+        <p>Total Price: <span id="modal-cart-total">0.00</span> DH</p>
+
+        <form id="checkout-form" onsubmit="placeOrder(event)">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" required placeholder="John Doe" />
+          </div>
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input
+              type="text"
+              id="address"
+              required
+              placeholder="123 Food St"
+            />
+          </div>
+          <div style="display: flex; gap: 10px; margin-top: 10px">
+            <button
+              type="button"
+              class="btn-secondary"
+              onclick="clearCart()"
+              style="flex: 1"
+            >
+              Clear Cart
+            </button>
+            <button
+              type="submit"
+              class="btn-primary"
+              style="flex: 1; margin-top: 0"
+            >
+              Place Order
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
