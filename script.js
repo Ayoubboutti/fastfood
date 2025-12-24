@@ -120,7 +120,7 @@ function placeOrder(event) {
     const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     message += `\n*Total:* ${total.toFixed(2)} DH`;
 
-    const phoneNumber = "212600000000"; // Replace with your WhatsApp number
+    const phoneNumber = "212640234630"; // Replace with your WhatsApp number
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
     window.open(url, '_blank');
