@@ -3,11 +3,15 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    background-color: #f9f9f9;
+    background-color: #f8fafc;
     color: #333;
 }
 
@@ -17,17 +21,26 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 5%;
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
 .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     font-size: 1.5rem;
     font-weight: bold;
     color: #ff6b6b;
+}
+
+.logo img {
+    height: 40px;
+    border-radius: 50%;
 }
 
 .nav-links {
@@ -45,6 +58,18 @@ body {
 .cart-icon {
     font-size: 1.2rem;
     cursor: pointer;
+    transition: color 0.3s;
+}
+
+.cart-icon.bump {
+    animation: bump 0.3s ease-out;
+    color: #ff6b6b;
+}
+
+@keyframes bump {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
 }
 
 .hamburger {
@@ -101,11 +126,12 @@ body {
     color: white;
     padding: 10px 25px;
     text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
+    border-radius: 50px;
+    font-weight: 600;
     transition: background 0.3s;
     display: inline-block;
     margin-top: 20px;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
 }
 
 .btn-primary:hover {
@@ -118,8 +144,8 @@ body {
     padding: 10px 25px;
     text-decoration: none;
     border: none;
-    border-radius: 5px;
-    font-weight: bold;
+    border-radius: 50px;
+    font-weight: 600;
     transition: background 0.3s;
     cursor: pointer;
 }
@@ -150,7 +176,7 @@ body {
     color: #ff6b6b;
     padding: 8px 20px;
     margin: 0 5px;
-    border-radius: 20px;
+    border-radius: 50px;
     cursor: pointer;
     font-weight: bold;
     transition: all 0.3s;
@@ -169,14 +195,16 @@ body {
 
 .food-card {
     background: white;
-    border-radius: 10px;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f0f0f0;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .food-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 20px 35px -5px rgba(0, 0, 0, 0.1);
 }
 
 .food-card img {
@@ -206,13 +234,17 @@ body {
     background-color: #333;
     color: white;
     border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 500;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .add-btn:hover {
-    background-color: #555;
+    background-color: #ff6b6b;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
 }
 
 .cart-actions {
@@ -224,9 +256,16 @@ body {
     width: 50px;
     padding: 5px;
     margin-right: 8px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    border: 1px solid #e2e8f0;
+    background-color: #f8fafc;
+    border-radius: 8px;
     text-align: center;
+}
+
+.load-more-container {
+    text-align: center;
+    margin-top: 2rem;
+    width: 100%;
 }
 
 /* Testimonials Section */
@@ -250,8 +289,9 @@ body {
 .testimonial-card {
     background-color: #f9f9f9;
     padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    border-radius: 20px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f0f0f0;
     text-align: center;
 }
 
@@ -303,7 +343,8 @@ footer {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.6);
+    backdrop-filter: blur(5px);
     justify-content: center;
     align-items: center;
 }
@@ -311,9 +352,10 @@ footer {
 .modal-content {
     background-color: white;
     padding: 2rem;
-    border-radius: 10px;
+    border-radius: 24px;
     width: 90%;
     max-width: 400px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
     position: relative;
     animation: slideDown 0.3s ease-out;
 }
@@ -344,9 +386,16 @@ footer {
 
 .form-group input {
     width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    background-color: #f8fafc;
+    border-radius: 12px;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #ff6b6b;
 }
 
 /* Toast Notification */
@@ -423,5 +472,11 @@ footer {
     .hamburger {
         display: block;
         margin-left: 15px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .menu-grid {
+        grid-template-columns: repeat(4, 1fr);
     }
 }

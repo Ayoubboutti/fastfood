@@ -29,22 +29,59 @@ function addToCart(itemName, itemPrice, btnElement) {
 
 console.log("FastBites website loaded successfully.");
 
+let currentCategory = 'all';
+const itemsPerPage = 8;
+let visibleItemCount = itemsPerPage;
+
 function filterMenu(category, btnElement) {
-    const items = document.querySelectorAll('.food-card');
+    currentCategory = category;
+    visibleItemCount = itemsPerPage;
+
+    // Update active button
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    if (btnElement) {
+        btnElement.classList.add('active');
+    }
     
-    // Filter items
+    updateMenuDisplay();
+}
+
+function loadMore() {
+    visibleItemCount += itemsPerPage;
+    updateMenuDisplay();
+}
+
+function updateMenuDisplay() {
+    const items = document.querySelectorAll('.food-card');
+    const loadMoreBtn = document.getElementById('load-more-btn');
+    
+    let matchCount = 0;
+    let shownCount = 0;
+
     items.forEach(item => {
         const itemCategory = item.getAttribute('data-category');
-        if (category === 'all' || itemCategory === category) {
-            item.style.display = 'block';
+        const shouldShow = (currentCategory === 'all' || itemCategory === currentCategory);
+
+        if (shouldShow) {
+            matchCount++;
+            if (shownCount < visibleItemCount) {
+                item.style.display = 'block';
+                shownCount++;
+            } else {
+                item.style.display = 'none';
+            }
         } else {
             item.style.display = 'none';
         }
     });
 
-    // Update active button
-    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-    btnElement.classList.add('active');
+    if (loadMoreBtn) {
+        if (visibleItemCount < matchCount) {
+            loadMoreBtn.style.display = 'inline-block';
+        } else {
+            loadMoreBtn.style.display = 'none';
+        }
+    }
 }
 
 function updateCartCount() {
@@ -150,3 +187,6 @@ function showToast(message) {
     toast.classList.add("show");
     setTimeout(function(){ toast.classList.remove("show"); }, 3000);
 }
+
+// Initialize menu display
+updateMenuDisplay();
